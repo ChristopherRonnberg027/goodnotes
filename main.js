@@ -1,8 +1,9 @@
 let container = document.querySelector(".posts-container")
 let createButton = document.querySelector(".createPostButton")
 let deleteButtonOnPost = document.querySelector(".delete")
+let searchField = document.querySelector(".search")
 
-
+searchField.addEventListener("onkeypress", searchFunction)
 createButton.addEventListener("click", createNewPost)
 
 // on click functions
@@ -40,7 +41,11 @@ function savePostIt(id) {
 }
 
 
+// onkeypress function
 
+searchFunction() {
+    
+}
 
 // Rendering chain for edited post
 
