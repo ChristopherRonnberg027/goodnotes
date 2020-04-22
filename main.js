@@ -19,12 +19,24 @@ function deletePostFromPost(id) {
 }
 
 function createNewPost() {
+    let newId = Math.floor((Math.random() * 1000000) + 1)
+    console.log(newId)
+    let newPostIt = {
+        title: '',
+        id: newId,
+        content: '',
+        createdAt: Date.now()
+    }
     postIts.push(newPostIt)
     renderPosts(postIts, container)
 }
 
-function savePostIt(id, title, content) {
-    renderSavedPosts(postIts, container, id, title, content)
+function savePostIt(id) {
+
+    let titleId = `` + id + `title`
+    let contentId = `` + id + `content`
+
+    renderSavedPosts(postIts, container, id, document.getElementById(titleId).value, document.getElementById(contentId).value)
 }
 
 
@@ -35,16 +47,16 @@ function savePostIt(id, title, content) {
 function BlogPostEdited(postIt) {
     return `
         <article class="post" id="${postIt.id}">
-            <input type="text" class="title" value = "${postIt.title}"></input>
-            <input type="text" class="content" value = "${postIt.content}"></input>
+            <input type="text" class="title" value = "${postIt.title}" id = "${postIt.id}title" ></input>
+            <input type="text" class="content" value = "${postIt.content}" id = "${postIt.id}content"></input>
             <p class="createdAt">${postIt.createdAt}</p>
             <button class="delete" onclick="deletePostFromPost(${postIt.id})">DELETE</button>
-            <button class="save" onclick="savePostIt(${postIt.id}, '${postIt.title}', '${postIt.content}')" >SAVE</button>
+            <button class="save" onclick="savePostIt(${postIt.id})" >SAVE</button>
         </article>
     `
 }
 function BlogPostAllEdited(posts, id) {
-    let newPostItHtmlString = ``
+    let newPostItHtmlString = `<section class="posts">`
 
     for (let post of posts) {
         if (post.id != id) {
@@ -53,7 +65,8 @@ function BlogPostAllEdited(posts, id) {
             newPostItHtmlString += BlogPostEdited(post)
         }
     }
-    return newPostItHtmlString
+    newPostItHtmlString
+    return newPostItHtmlString += `</section>`
 }
 function renderEditedPosts(postItData, container, id){
     container.innerHTML = BlogPostAllEdited(postItData, id)
@@ -96,7 +109,7 @@ function renderSavedPosts(postItData, container, id, title, content){
 
 
 function BlogPostAllSaving(posts, id, title, content) {
-    let newPostItHtmlString = ``
+    let newPostItHtmlString = `<section class="posts">`
 
     for (let post of posts) {
         if (post.id != id) {
@@ -107,7 +120,7 @@ function BlogPostAllSaving(posts, id, title, content) {
             newPostItHtmlString += BlogPostSaved(post)
         }
     }
-
+    return newPostItHtmlString += `</section>`
     return newPostItHtmlString
 }
 
@@ -151,7 +164,7 @@ let postIts = [
 
 let newPostIt = {
     title: 'new',
-    id: '234',
+    id: Math.floor((Math.random() * 1000000) + 1),
     content: 'A Post',
     createdAt: Date.now()
 }
