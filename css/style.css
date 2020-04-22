@@ -35,7 +35,11 @@ section {
 
 
 .post {
-    background-color: darkgreen;
+    background-color: #d4e1fe;;
     width: 15em;
     height: 15em;
+}
+
+article{
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.32);
 }
