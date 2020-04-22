@@ -140,12 +140,6 @@ function BlogPostSaved(postIt) {
 
 // temporary data for experiments
 
-function formattedDate(){
-    const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
-    let currentDate = new Date()
-    let formattedDate = currentDate.getDate() + "-"+ months[currentDate.getMonth]
-    return formattedDate
-}
 
 
 let postIts = [
@@ -153,19 +147,19 @@ let postIts = [
         title: 'title',
         id: '1',
         content: 'A Post',
-        createdAt: formattedDate()
+        createdAt: Date.now()
     },
     {
         title: 'title',
         id: '2',
         content: 'A Post',
-        createdAt: formattedDate()
+        createdAt: Date.now()
     },
     {
         title: 'title',
         id: '3',
         content: 'A Post',
-        createdAt: formattedDate()
+        createdAt: Date.now()
     },
 ]
 
@@ -173,14 +167,14 @@ let newPostIt = {
     title: 'new',
     id: Math.floor((Math.random() * 1000000) + 1),
     content: 'A Post',
-    createdAt: formattedDate()
+    createdAt: Date.now()
 }
 
 let emptyPost = {
     title: '',
     id: '',
     content: '',
-    createdAt: formattedDate()
+    createdAt: Date.now()
 
 }
 
