@@ -1,0 +1,41 @@
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+ul {
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    background-color: rgb(220, 245, 220);
+}
+
+li {
+    margin: 4px;
+    background-color: rgb(220, 245, 220);
+}
+
+.posts-container {
+    display: flex;
+    justify-content: center;
+    background-color: darkgrey;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
+
+
+.post {
+    background-color: darkgreen;
+    width: 15em;
+    height: 15em;
+}
