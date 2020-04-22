@@ -1,3 +1,10 @@
+body{
+    font-family: "Helvetica";
+}
+
+h3, p{
+    padding: 0.5em;
+}
 
 header {
     display: flex;
@@ -31,6 +38,7 @@ section {
     grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.32);
 }
 
 
@@ -38,10 +46,6 @@ section {
     background-color: #d4e1fe;;
     width: 15em;
     height: 15em;
-}
-
-article{
-    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.32);
 }
 
 button {
