@@ -1,5 +1,5 @@
 let container = document.querySelector(".posts-container")
-let createButton = document.querySelector(".createPost")
+let createButton = document.querySelector(".createPostButton")
 let deleteButtonOnPost = document.querySelector(".delete")
 
 
