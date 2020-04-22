@@ -140,25 +140,32 @@ function BlogPostSaved(postIt) {
 
 // temporary data for experiments
 
+function formattedDate(){
+    const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+    let currentDate = new Date()
+    let formattedDate = currentDate.getDate() + "-"+ months[currentDate.getMonth]
+    return formattedDate
+}
+
 
 let postIts = [
     {
         title: 'title',
         id: '1',
         content: 'A Post',
-        createdAt: Date.now()
+        createdAt: formattedDate()
     },
     {
         title: 'title',
         id: '2',
         content: 'A Post',
-        createdAt: Date.now()
+        createdAt: formattedDate()
     },
     {
         title: 'title',
         id: '3',
         content: 'A Post',
-        createdAt: Date.now()
+        createdAt: formattedDate()
     },
 ]
 
@@ -166,14 +173,14 @@ let newPostIt = {
     title: 'new',
     id: Math.floor((Math.random() * 1000000) + 1),
     content: 'A Post',
-    createdAt: Date.now()
+    createdAt: formattedDate()
 }
 
 let emptyPost = {
     title: '',
     id: '',
     content: '',
-    createdAt: Date.now()
+    createdAt: formattedDate()
 
 }
 
