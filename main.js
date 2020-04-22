@@ -3,7 +3,7 @@ let createButton = document.querySelector(".createPostButton")
 let deleteButtonOnPost = document.querySelector(".delete")
 let searchField = document.querySelector(".search")
 
-searchField.addEventListener("onkeypress", searchFunction)
+searchField.addEventListener("keydown", searchFunction)
 createButton.addEventListener("click", createNewPost)
 
 // on click functions
@@ -43,8 +43,19 @@ function savePostIt(id) {
 
 // onkeypress function
 
-searchFunction() {
-    
+function searchFunction() {
+    let foundPostits = []
+    let serachQueery = document.getElementById("searchField").value
+    if (serachQueery.length > 0) {
+        postIts
+                .filter(post => post.title.includes(serachQueery))
+                .map(post => foundPostits.push(post))
+
+        renderPosts(foundPostits, container)
+    } else {
+        renderPosts(postIts,container)
+    }
+    repeater = setTimeout(searchFunction, 500);
 }
 
 // Rendering chain for edited post
