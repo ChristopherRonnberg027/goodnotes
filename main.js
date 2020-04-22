@@ -9,13 +9,11 @@ createButton.addEventListener("click", createNewPost)
 
 function editPostIt(id) {
 
-    console.log(renderEditedPosts(postIts, container, id))
     renderEditedPosts(postIts, container, id)
 
 }
 function deletePostFromPost(id) {
     let currentPostsId = id
-    console.log(currentPostsId)
     postIts = postIts.filter(post => post.id != currentPostsId)
     renderPosts(postIts, container)
 }
@@ -23,6 +21,10 @@ function deletePostFromPost(id) {
 function createNewPost() {
     postIts.push(newPostIt)
     renderPosts(postIts, container)
+}
+
+function savePostIt(id, title, content) {
+    renderSavedPosts(postIts, container, id, title, content)
 }
 
 
@@ -33,11 +35,11 @@ function createNewPost() {
 function BlogPostEdited(postIt) {
     return `
         <article class="post" id="${postIt.id}">
-            <input type="text" class="title">${postIt.title}</input>
-            <input type="text" class="content">${postIt.content}</input>
+            <input type="text" class="title" value = "${postIt.title}"></input>
+            <input type="text" class="content" value = "${postIt.content}"></input>
             <p class="createdAt">${postIt.createdAt}</p>
             <button class="delete" onclick="deletePostFromPost(${postIt.id})">DELETE</button>
-            <button class="save" onclick="savePostIt(${postIt.id})">SAVE</button>
+            <button class="save" onclick="savePostIt(${postIt.id}, '${postIt.title}', '${postIt.content}')" >SAVE</button>
         </article>
     `
 }
@@ -86,9 +88,41 @@ function renderPosts(postItData, container){
 }
 
 
+// rendering chain for saving edited posts
+
+function renderSavedPosts(postItData, container, id, title, content){
+    container.innerHTML = BlogPostAllSaving(postItData, id, title, content)
+}
 
 
+function BlogPostAllSaving(posts, id, title, content) {
+    let newPostItHtmlString = ``
 
+    for (let post of posts) {
+        if (post.id != id) {
+            newPostItHtmlString += BlogPost(post)
+        } else {
+            post.title = title
+            post.content = content
+            newPostItHtmlString += BlogPostSaved(post)
+        }
+    }
+
+    return newPostItHtmlString
+}
+
+
+function BlogPostSaved(postIt) {
+    return `
+        <article class="post" id="${postIt.id}>
+            <h3 class="title">${postIt.title}</h3>
+            <p class="content">${postIt.content}</p>
+            <p class="createdAt">${postIt.createdAt}</p>
+            <button class="delete" onclick="deletePostFromPost(${postIt.id})">DELETE</button>
+            <button class="edit" onclick="editPostIt(${postIt.id})">EDIT</button>
+        </article>
+    `
+}
 
 
 // temporary data for experiments
