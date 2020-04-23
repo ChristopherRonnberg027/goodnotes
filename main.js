@@ -2,10 +2,14 @@ let container = document.querySelector(".posts-container")
 let createButton = document.querySelector(".createPostButton")
 let deleteButtonOnPost = document.querySelector(".delete")
 let searchField = document.querySelector(".search")
+let destroyAll = document.querySelector(".destroyAll")
 
-searchField.addEventListener("keydown", searchFunction)
+searchField.addEventListener("keyup", searchFunction)
 createButton.addEventListener("click", createNewPost)
+destroyAll.addEventListener("click", destroyAllPosts)
 
+
+let repeater
 // on click functions
 
 function editPostIt(id) {
@@ -40,8 +44,13 @@ function savePostIt(id) {
     renderSavedPosts(postIts, container, id, document.getElementById(titleId).value, document.getElementById(contentId).value)
 }
 
+function destroyAllPosts() {
+    postIts = []
+    renderPosts(postIts, container)
+}
 
-// onkeypress function
+
+// keyup event function
 
 function searchFunction() {
     let foundPostits = []
@@ -55,14 +64,15 @@ function searchFunction() {
     } else {
         renderPosts(postIts,container)
     }
-    repeater = setTimeout(searchFunction, 500);
+    // repeater = setTimeout(searchFunction, 100); --> keeps rendering and blocks other functions
+
 }
 
 // Rendering chain for edited post
 
 function BlogPostEdited(postIt) {
     return `
-        <article class="post" id="${postIt.id}">
+        <article class="post" id="post-${postIt.id}">
             <input type="text" class="title" value = "${postIt.title}" id = "${postIt.id}title" ></input>
             <input type="text" class="content" value = "${postIt.content}" id = "${postIt.id}content"></input>
             <p class="createdAt">${postIt.createdAt}</p>
@@ -102,7 +112,7 @@ function BlogPostAll(posts){
 
 function BlogPost(postIt){
     return `
-        <article class="post" id="${postIt.id}>
+        <article class="post" id="post-${postIt.id}>
             <h3 class="title">${postIt.title}</h3>
             <p class="content">${postIt.content}</p>
             <p class="createdAt">${postIt.createdAt}</p>
@@ -114,6 +124,10 @@ function BlogPost(postIt){
 
 function renderPosts(postItData, container){
     container.innerHTML = BlogPostAll(postItData)
+    for (let post of postItData) {
+        let element = document.querySelector("#post-" + post.id)
+        console.log(element)
+    }
 }
 
 
@@ -143,7 +157,7 @@ function BlogPostAllSaving(posts, id, title, content) {
 
 function BlogPostSaved(postIt) {
     return `
-        <article class="post" id="${postIt.id}>
+        <article class="post" id="post-${postIt.id}>
             <h3 class="title">${postIt.title}</h3>
             <p class="content">${postIt.content}</p>
             <p class="createdAt">${postIt.createdAt}</p>
@@ -200,4 +214,8 @@ let emptyPost = {
 
 renderPosts(postIts, container)
 console.log(document);
+for (let post of postIts) {
+    let element = document.querySelector("#post-" + post.id)
+    console.log(element)
+}
 
