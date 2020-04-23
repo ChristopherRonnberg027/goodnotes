@@ -80,10 +80,30 @@ section {
 
 .post {
     border-radius: 3px;
-    background-color: #d4e1fe;;
+    background-color: #d4e1fe;
     width: 15em;
     height: 15em;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.32);
+}
+
+.post h3 {
+    text-align: center;
+    width: 100%;
+    height: 1.7em;
+    padding: 0px;
+    padding-top: 0.4em;
+    margin: 0px;
+    background-color: rgba(0,0,0,0.05);
+}
+
+.post input {
+    border: 0px;
+    background-color: #d4e1fe;
+}
+
+.post .delete {
+    position: relative;
+    left: 1em;
 }
 
 button {

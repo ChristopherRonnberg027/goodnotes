@@ -112,7 +112,7 @@ function BlogPostAll(posts){
 
 function BlogPost(postIt){
     return `
-        <article class="post" id="post-${postIt.id}>
+        <article class="post" id="post-${postIt.id}">
             <h3 class="title">${postIt.title}</h3>
             <p class="content">${postIt.content}</p>
             <p class="createdAt">${postIt.createdAt}</p>
@@ -124,10 +124,16 @@ function BlogPost(postIt){
 
 function renderPosts(postItData, container){
     container.innerHTML = BlogPostAll(postItData)
-    for (let post of postItData) {
-        let element = document.querySelector("#post-" + post.id)
-        console.log(element)
-    }
+    // for (let post of postItData) {
+    //     let element = document.querySelector("#post-" + post.id)
+    //     console.log(element)
+    //     let deletbutton = element.querySelector(".delete")
+    //     deletbutton.addEventListener("click", () => deletePostFromPost(post.id))
+    //     let editButton = element.querySelector(".edit")
+    //     editButton.addEventListener("click", () => editPostIt(post.id))
+    //     let saveButton = element.querySelector(".save")
+    //     saveButton.addEventListener("click", () => savePostIt(postIt.id))
+    // }
 }
 
 
